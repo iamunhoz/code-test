@@ -3,8 +3,8 @@ import create from 'zustand'
 import { getPosts } from 'api'
 
 export const useAppStore = create<AppStore>((set) => ({
-  postId: 0,
-  setPostId(id: number) {
+  postId: '0',
+  setPostId(id: string) {
     set(() => ({ postId: id }))
   },
   posts: [],

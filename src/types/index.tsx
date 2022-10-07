@@ -6,8 +6,8 @@ export type ParamsGetPosts =
   | undefined
 
 export type AppStore = {
-  postId: number
-  setPostId: (id: number) => void
+  postId: string
+  setPostId: (id: string) => void
   posts: PostPayload[]
   getPosts: (params: ParamsGetPosts) => void
 }

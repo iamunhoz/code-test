@@ -15,7 +15,22 @@ export const articleParser = (article: string): string[] => {
         .replace('\n', '')
     )
 
-  console.log('matches', matches)
-
   return matches
+}
+
+export const getHeadline = (article: string) => {
+  const matches = articleParser(article)
+  const headline = matches[0].split('.').slice(0, 3).join('.')
+  return `${headline}.`
+}
+
+export const getLocaleDate = (d: string) => {
+  const date = new Date(d)
+
+  const month = new Intl.DateTimeFormat('pt-br', { month: 'short' })
+    .format(date)
+    .split('')
+  const monthCapital = [month[0].toUpperCase(), ...month.slice(1)].join('')
+
+  return `${monthCapital} ${date.getDate()}, ${date.getFullYear()}`
 }
