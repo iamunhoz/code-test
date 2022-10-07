@@ -1,6 +1,6 @@
+import HeadlineCard from 'components/HeadlineCard'
 import React, { useEffect } from 'react'
 import { useAppStore } from 'state'
-import { articleParser } from 'utils'
 
 export default function Timeline() {
   const { posts, getPosts } = useAppStore((state) => state)
@@ -12,17 +12,10 @@ export default function Timeline() {
   }, [getPosts, posts.length])
 
   return (
-    <div>
-      {posts.map((post) => (
-        <div key={post.id} className="border">
-          <div>
-            {articleParser(post.article).map((paragraph) => (
-              <p key={paragraph.slice(0, 10)}>{paragraph}</p>
-            ))}
-          </div>
-          <p>{post.author}</p>
-        </div>
-      ))}
+    <div className="w-full grid grid-rows-6 grid-cols-6 gap-y-12 mt-12">
+      {posts.map((post, idx) => {
+        return <HeadlineCard key={post.id} post={post} idx={idx} />
+      })}
     </div>
   )
 }
