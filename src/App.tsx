@@ -1,4 +1,4 @@
-import { useAppStore } from 'api/state'
+import { useAppStore } from 'state'
 import { Post, ContactFormModal, Timeline, TopBar } from 'components'
 
 export default function App() {
