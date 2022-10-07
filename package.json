@@ -1,16 +1,16 @@
 {
-  "name": "reactjs-vite-tailwindcss-boilerplate",
-  "description": "This is a React + vite boilerplate to be used with Tailwindcss.",
+  "name": "coderockr-challenge",
+  "description": "This is the app made for the challenge asked by coderockr company",
   "version": "0.1.0",
   "private": true,
   "author": {
-    "name": "João Paulo Moraes",
-    "email": "joaopaulomoraes@outlook.com",
-    "url": "https://github.com/joaopaulomoraes"
+    "name": "Ivã Munhoz",
+    "email": "iamunhoz@gmail.com",
+    "url": "https://github.com/iamunhoz"
   },
   "bugs": {
-    "url": "https://github.com/joaopaulomoraes/reactjs-vite-tailwindcss-boilerplate/issues",
-    "email": "joaopaulomoraes@outlook.com"
+    "url": "https://github.com/iamunhoz/code-test/issues",
+    "email": "iamunhoz@gmail.com"
   },
   "scripts": {
     "dev": "vite",
