@@ -1,21 +1,43 @@
 import HeadlineCard from 'components/HeadlineCard'
-import React, { useEffect } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useAppStore } from 'state'
 
 export default function Timeline() {
   const { posts, getPosts } = useAppStore((state) => state)
+  const [page, setPage] = useState(0)
+
+  const loaderRef = useRef(null)
+
+  const handleObserver: IntersectionObserverCallback = useCallback(
+    (entries) => {
+      const target = entries[0]
+      if (target.isIntersecting) {
+        setPage((prev) => prev + 1)
+      }
+    },
+    []
+  )
 
   useEffect(() => {
-    if (!posts.length) {
-      getPosts({ _page: 0, _limit: 10 })
+    getPosts({ _page: page, _limit: 10 })
+  }, [getPosts, page])
+
+  useEffect(() => {
+    const option = {
+      root: null,
+      rootMargin: '20px',
+      threshold: 0
     }
-  }, [getPosts, posts.length])
+    const observer = new IntersectionObserver(handleObserver, option)
+    if (loaderRef.current) observer.observe(loaderRef.current)
+  }, [handleObserver])
 
   return (
-    <div className="w-full grid grid-rows-6 grid-cols-6 gap-y-12 mt-12">
+    <div className="w-full grid grid-rows-1 grid-cols-1 md:grid-rows-6 md:grid-cols-6 mt-12">
       {posts.map((post, idx) => {
         return <HeadlineCard key={post.id} post={post} idx={idx} />
       })}
+      <div ref={loaderRef} />
     </div>
   )
 }

@@ -1,6 +1,6 @@
 import { AppStore } from 'types'
 import create from 'zustand'
-import { getPosts } from 'api'
+import { fetchPosts } from 'api'
 
 export const useAppStore = create<AppStore>((set) => ({
   postId: '0',
@@ -10,8 +10,9 @@ export const useAppStore = create<AppStore>((set) => ({
 
   posts: [],
   getPosts: async (params) => {
-    const response = await getPosts(params)
-    set({ posts: await response.data })
+    const response = await fetchPosts(params)
+    const newPosts = await response.data
+    set((state) => ({ posts: [...state.posts, ...newPosts] }))
   },
 
   showContactFormModal: false,
