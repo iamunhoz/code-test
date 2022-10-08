@@ -3,13 +3,13 @@ import { Post, ContactFormModal, Timeline, TopBar } from 'components'
 import './style.css'
 
 export default function App() {
-  const { postId } = useAppStore((state) => state)
+  const { postId, showContactFormModal } = useAppStore((state) => state)
 
   return (
-    <div>
+    <div className="relative">
       <TopBar />
       {postId === '0' ? <Timeline /> : <Post />}
-      <ContactFormModal />
+      {showContactFormModal && <ContactFormModal />}
     </div>
   )
 }

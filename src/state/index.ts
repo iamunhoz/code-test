@@ -7,9 +7,15 @@ export const useAppStore = create<AppStore>((set) => ({
   setPostId(id: string) {
     set(() => ({ postId: id }))
   },
+
   posts: [],
   getPosts: async (params) => {
     const response = await getPosts(params)
     set({ posts: await response.data })
+  },
+
+  showContactFormModal: false,
+  setShowContactFormModal(choice: boolean) {
+    set(() => ({ showContactFormModal: choice }))
   }
 }))

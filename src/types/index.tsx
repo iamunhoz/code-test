@@ -8,8 +8,12 @@ export type ParamsGetPosts =
 export type AppStore = {
   postId: string
   setPostId: (id: string) => void
+
   posts: PostPayload[]
   getPosts: (params: ParamsGetPosts) => void
+
+  showContactFormModal: boolean
+  setShowContactFormModal: (choice: boolean) => void
 }
 
 export type PostPayload = {
