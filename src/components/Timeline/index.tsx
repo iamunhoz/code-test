@@ -1,9 +1,10 @@
 import HeadlineCard from 'components/HeadlineCard'
+import LoadingSpinner from 'components/LoadingSpinner'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useAppStore } from 'state'
 
 export default function Timeline() {
-  const { posts, getPosts } = useAppStore((state) => state)
+  const { posts, fetchPosts, loadingGet } = useAppStore((state) => state)
   const [page, setPage] = useState(0)
 
   const loaderRef = useRef(null)
@@ -19,8 +20,8 @@ export default function Timeline() {
   )
 
   useEffect(() => {
-    getPosts({ _page: page, _limit: 10 })
-  }, [getPosts, page])
+    fetchPosts({ _page: page, _limit: 10 })
+  }, [fetchPosts, page])
 
   useEffect(() => {
     const option = {
@@ -33,11 +34,14 @@ export default function Timeline() {
   }, [handleObserver])
 
   return (
-    <div className="w-full grid grid-rows-1 grid-cols-1 md:grid-rows-6 md:grid-cols-6 mt-12">
-      {posts.map((post, idx) => {
-        return <HeadlineCard key={post.id} post={post} idx={idx} />
-      })}
-      <div ref={loaderRef} />
-    </div>
+    <>
+      <div className="w-full grid grid-rows-1 grid-cols-1 md:grid-rows-6 md:grid-cols-6 mt-12">
+        {posts.map((post, idx) => {
+          return <HeadlineCard key={post.id} post={post} idx={idx} />
+        })}
+        <div ref={loaderRef} />
+      </div>
+      <LoadingSpinner loading={loadingGet} />
+    </>
   )
 }
