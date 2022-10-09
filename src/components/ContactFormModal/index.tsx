@@ -1,21 +1,25 @@
 import { useAppStore } from 'state'
+import { ParamsPostContact } from 'types'
+
+import { useForm } from 'react-form'
+import { NameField, EmailField, PhoneField, MessageField } from './fields'
+import { IconSend } from 'components/icons'
 
 export default function ContactFormModal() {
-  const { setShowContactFormModal } = useAppStore((state) => state)
+  const { setShowContactFormModal, sendContact } = useAppStore((state) => state)
+
+  const {
+    Form,
+    meta: { isSubmitting, canSubmit }
+  } = useForm({
+    onSubmit: async (values: ParamsPostContact) => {
+      await sendContact(values)
+    }
+    //debugForm: true
+  })
 
   const closeModal = () => {
     setShowContactFormModal(false)
-  }
-
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (evt) => {
-    evt.preventDefault()
-    const formFields = ['name', 'email', 'phone', 'post']
-
-    const values: Record<string, string> = {}
-    formFields.forEach((field) => {
-      values[field] = evt.target[field].value
-    })
-    console.log('submit values', values)
   }
 
   return (
@@ -24,33 +28,46 @@ export default function ContactFormModal() {
       style={{ backgroundColor: 'rgba(45, 45, 45, 0.7)' }}
     >
       <div
-        className="w-1/2 h-1/2 relative"
+        className="w-3/4 h-4/5 relative"
         style={{ backgroundColor: 'white' }}
       >
-        <h2>Contact</h2>
-        <form onSubmit={handleSubmit}>
-          <label>
-            Name:
-            <input type="text" name="name" />
-          </label>
-
-          <label>
-            E-mail:
-            <input type="text" name="email" />
-          </label>
-
-          <label>
-            Phone:
-            <input type="text" name="phone" />
-          </label>
-
-          <label>
-            Post:
-            <textarea name="post" />
-          </label>
-
-          <input type="submit" value="Submit" />
-        </form>
+        <Form>
+          <div className="flex flex-col p-8">
+            <h2 className="text-2xl text-center mb-4">Contact</h2>
+            <label className="flex flex-col mb-4">
+              Name
+              <NameField />
+            </label>
+            <label className="flex flex-col mb-4">
+              Email
+              <EmailField />
+            </label>
+            <label className="flex flex-col mb-4">
+              Phone
+              <PhoneField />
+            </label>
+            <label className="flex flex-col mb-4">
+              Message
+              <MessageField />
+            </label>
+            <button
+              disabled={!canSubmit}
+              type="submit"
+              className="text-white flex p-2 w-1/2 mx-auto justify-center gap-2"
+              style={{ background: '#2D2D2D' }}
+            >
+              {isSubmitting ? (
+                <svg
+                  className="animate-spin h-5 w-5 mr-3"
+                  viewBox="0 0 24 24"
+                />
+              ) : (
+                <IconSend />
+              )}
+              Submit
+            </button>
+          </div>
+        </Form>
         <button
           className="absolute top-3 right-3 font-bold"
           onClick={closeModal}
