@@ -5,7 +5,7 @@ import { useAppStore } from 'state'
 
 export default function Timeline() {
   const { posts, fetchPosts, loadingGet } = useAppStore((state) => state)
-  const [page, setPage] = useState(0)
+  const [page, setPage] = useState(-1)
 
   const loaderRef = useRef(null)
 
@@ -20,6 +20,7 @@ export default function Timeline() {
   )
 
   useEffect(() => {
+    if (page < 0) return
     fetchPosts({ _page: page, _limit: 10 })
   }, [fetchPosts, page])
 
@@ -35,7 +36,7 @@ export default function Timeline() {
 
   return (
     <>
-      <div className="w-full grid grid-rows-1 grid-cols-1 md:grid-rows-6 md:grid-cols-6 mt-12">
+      <div className="w-full grid grid-rows-1 grid-cols-1 md:grid-rows-12 md:grid-cols-6 mt-12">
         {posts.map((post, idx) => {
           return <HeadlineCard key={post.id} post={post} idx={idx} />
         })}

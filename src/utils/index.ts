@@ -2,6 +2,10 @@ export function classNames(...classes: unknown[]): string {
   return classes.filter(Boolean).join(' ')
 }
 
+export const sanitize = (dirty: string): string => {
+  return dirty.replace(/<(\s|\S)+>/, '')
+}
+
 export const articleParser = (article: string): string[] => {
   const matches = article
     .split(/p>\s*</)
@@ -18,10 +22,9 @@ export const articleParser = (article: string): string[] => {
   return matches
 }
 
-export const getHeadline = (article: string) => {
-  const matches = articleParser(article)
-  const headline = matches[0].split('.').slice(0, 3).join('.')
-  return `${headline}.`
+export const getHeadline = (dirtyArticle: string, headLineSize: number) => {
+  const article = articleParser(dirtyArticle)[0]
+  return `${article.substring(0, headLineSize)}(...)`
 }
 
 export const getLocaleDate = (d: string) => {

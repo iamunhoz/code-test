@@ -1,6 +1,6 @@
 import { useAppStore } from 'state'
 import { Post, ContactFormModal, Timeline, TopBar } from 'components'
-import './style.css'
+import './global.style.css'
 
 export default function App() {
   const { postId, showContactFormModal } = useAppStore((state) => state)
