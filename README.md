@@ -1,10 +1,16 @@
-# React Tailwindcss Boilerplate build with Vite
+# Planning and Execution
 
-This is a [ReactJS](https://reactjs.org) + [Vite](https://vitejs.dev) boilerplate to be used with [Tailwindcss](https://tailwindcss.com).
+I decided for a tech stack that would give me the fastest start and the possibility to keep a small bundle size.
 
-## What is inside?
+Besides what was installed to have a running Typescript React project, I installed [axios](https://axios-http.com) to handle network requests and [react-form](https://github.com/tannerlinsley/react-form) to handle forms. All styling was done with tailwind, except for global configurations of typography and custom colors. I avoided using a UI library like Material-UI to keep the bundle size low as requested.
 
-This project uses many tools like:
+Finally, I chose [zustand](https://github.com/pmndrs/zustand) as the app state manager, because it is a small one and easy to install and use. I prefer to have my components as dumb as possible, only fetching the necessary state pieces to render and have simple dispatch functions. No props if I can avoid them.
+
+
+# Tech stack:
+This is a [ReactJS](https://reactjs.org) + [Vite](https://vitejs.dev) boilerplate used with [Tailwindcss](https://tailwindcss.com).
+
+This project also uses the following tools:
 
 - [ReactJS](https://reactjs.org)
 - [Vite](https://vitejs.dev)
@@ -15,58 +21,25 @@ This project uses many tools like:
 - [Eslint](https://eslint.org)
 - [Prettier](https://prettier.io)
 
-## Getting Started
+Project was bootstrapped with a template made by [João Paulo Moraes](https://github.com/joaopaulomoraes) by using the following command:
 
-### Install
-
-Create the project.
 
 ```bash
 npx degit joaopaulomoraes/reactjs-vite-tailwindcss-boilerplate my-app
 ```
 
-Access the project directory.
+
+# Building
+Just run
 
 ```bash
-cd my-app
+yarn build
 ```
 
-Install dependencies.
+# Troubles
+I found it weird to receive an api payload with text content already encapsuled in html tags. In a real situation, I think the best approuch would be to ask the backend team to send only string contents, but I get why it was put in the challenge. I got _pwned_ twice by the <img> tag carrying an infectious *onload* attribute. But this gave me a very good oportunity to understand why one should'nt use *dangerouslySetInnerHTML* and develop a deeper understanding of regular expressions to sanitize the payload, for which I'm glad and thankful. I hope my sanitization procedure was enough to keep the application safe.
 
-```bash
-pnpm install
-```
 
-Serve with hot reload at <http://localhost:5173>.
-
-```bash
-pnpm run dev
-```
-
-### Lint
-
-```bash
-pnpm run lint
-```
-
-### Typecheck
-
-```bash
-pnpm run typecheck
-```
-
-### Build
-
-```bash
-pnpm run build
-```
-
-### Test
-
-```bash
-pnpm run test
-```
-
-## License
+# License
 
 This project is licensed under the MIT License.

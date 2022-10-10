@@ -1,0 +1,36 @@
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(90deg, #F1A10A 0%, #342303 100%);
+}
+
+p, h1, h2, h3, h4, h5, span, button, label, input {
+  font-family: 'Rubik', sans-serif;
+}
+
+h1 {
+  font-family: 'Rubik';
+  font-style: normal;
+  font-weight: 700;
+  color: #FFFFFF;
+}
+
+h2 {
+  font-style: normal;
+  font-weight: 700;
+  color: #F1A10A;
+  max-height: 85%;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+p {
+  font-style: normal;
+  font-weight: 400;
+  color: #2D2D2D;
+}
