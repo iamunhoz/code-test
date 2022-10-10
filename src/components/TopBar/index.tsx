@@ -1,14 +1,21 @@
 import { useAppStore } from 'state'
 
 export default function TopBar() {
-  const { setPostId, setShowContactFormModal } = useAppStore((state) => state)
+  const { setPostId, setShowContactFormModal, setShowPostFormModal } =
+    useAppStore((state) => state)
 
   const goToTimeline = () => {
     setPostId('0')
   }
+
   const openContactFormModal = () => {
     setShowContactFormModal(true)
   }
+
+  const openNewPostFormModal = () => {
+    setShowPostFormModal(true)
+  }
+
   return (
     <div
       className="flex h-24 items-baseline justify-around sticky top-0 z-40"
@@ -26,9 +33,16 @@ export default function TopBar() {
         </button>
         <button
           onClick={openContactFormModal}
-          className="text-base lg:text-xl text-white h-8 my-auto pt-2"
+          className="mr-3 text-base lg:text-xl text-white h-8 my-auto pt-2"
         >
           Contact
+        </button>
+        <button
+          onClick={openNewPostFormModal}
+          className="text-base lg:text-xl text-white h-10 w-24 lg:w-28 font-bold my-auto mt-8 rounded-full"
+          style={{ background: '#F1A10A' }}
+        >
+          New Post
         </button>
       </div>
     </div>

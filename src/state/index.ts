@@ -1,6 +1,6 @@
 import { AppStore } from 'types'
 import create from 'zustand'
-import { getPosts, postContact } from 'api'
+import { getPosts, postContact, postNewPost } from 'api'
 
 export const useAppStore = create<AppStore>((set, get) => ({
   postId: '0',
@@ -30,13 +30,29 @@ export const useAppStore = create<AppStore>((set, get) => ({
   setShowContactFormModal(choice: boolean) {
     set(() => ({ showContactFormModal: choice }))
   },
-
   sendContact: async (params) => {
     set(() => ({ loadingPost: true }))
     const response = await postContact(params)
     if (response.status >= 200 && response.status < 300) {
       set(() => ({ loadingPost: false }))
     }
+  },
+
+  showPostFormModal: false,
+  setShowPostFormModal(choice: boolean) {
+    set(() => ({ showPostFormModal: choice }))
+  },
+  sendPost: async (params) => {
+    set(() => ({ loadingPost: true }))
+    const response = await postNewPost(params)
+    if (response.status >= 200 && response.status < 300) {
+      set(() => ({ loadingPost: false }))
+    }
+  },
+
+  newPostImgURL: '',
+  setNewPostImgURL(url) {
+    set(() => ({ newPostImgURL: url }))
   },
 
   loadingGet: false,

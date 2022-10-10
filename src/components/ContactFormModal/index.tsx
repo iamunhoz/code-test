@@ -1,5 +1,5 @@
 import { useAppStore } from 'state'
-import { ParamsPostContact } from 'types'
+import { ParamsContactMessage } from 'types'
 
 import { useForm } from 'react-form'
 import { NameField, EmailField, PhoneField, MessageField } from './fields'
@@ -12,7 +12,7 @@ export default function ContactFormModal() {
     Form,
     meta: { isSubmitting, canSubmit }
   } = useForm({
-    onSubmit: async (values: ParamsPostContact) => {
+    onSubmit: async (values: ParamsContactMessage) => {
       await sendContact(values)
     }
   })

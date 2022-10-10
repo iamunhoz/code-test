@@ -5,7 +5,14 @@ export type ParamsFetchPosts =
     }
   | undefined
 
-export type ParamsPostContact = {
+export type ParamsContactMessage = {
+  name: string
+  email: string
+  phone: string
+  post: string
+}
+
+export type ParamsNewPost = {
   name: string
   email: string
   phone: string
@@ -24,8 +31,14 @@ export type AppStore = {
 
   showContactFormModal: boolean
   setShowContactFormModal: (choice: boolean) => void
+  sendContact: (params: ParamsContactMessage) => Promise<void>
 
-  sendContact: (params: ParamsPostContact) => Promise<void>
+  showPostFormModal: boolean
+  setShowPostFormModal: (choice: boolean) => void
+  sendPost: (params: ParamsNewPost) => Promise<void>
+
+  newPostImgURL: string
+  setNewPostImgURL: (url: string) => void
 }
 
 export type PostPayload = {
