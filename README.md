@@ -37,7 +37,7 @@ yarn build
 ```
 
 # Troubles
-I found it weird to receive an api payload with text content already encapsuled in html tags. In a real situation, I think the best approuch would be to ask the backend team to send only string contents, but I get why it was put in the challenge. I got _pwned_ twice by the <img> tag carrying an infectious *onload* attribute. But this gave me a very good oportunity to understand why one should'nt use *dangerouslySetInnerHTML* and develop a deeper understanding of regular expressions to sanitize the payload, for which I'm glad and thankful. I hope my sanitization procedure was enough to keep the application safe.
+I found it weird to receive an api payload with text content already encapsuled in html tags. In a real situation, I think the best approach would be to ask the backend team to send only string contents, but I get why it was put in the challenge. I got _pwned_ twice by the <img> tag carrying an infectious *onload* attribute. But this gave me a very good oportunity to understand why one should'nt use *dangerouslySetInnerHTML* and develop a deeper understanding of regular expressions to sanitize the payload, for which I'm glad and thankful. I hope my sanitization procedure was enough to keep the application safe.
 
 
 # License
