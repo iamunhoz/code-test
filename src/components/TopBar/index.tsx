@@ -11,7 +11,7 @@ export default function TopBar() {
   }
   return (
     <div
-      className="flex h-24 items-baseline justify-around"
+      className="flex h-24 items-baseline justify-around sticky top-0 z-40"
       style={{
         background: '#2D2D2D'
       }}

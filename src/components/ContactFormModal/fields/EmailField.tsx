@@ -1,6 +1,5 @@
 import { useField } from 'react-form'
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const validateEmail = (email: string) => {
   if (!email) {
     return 'An e-mail address is required'

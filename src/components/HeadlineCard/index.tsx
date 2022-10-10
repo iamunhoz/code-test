@@ -1,5 +1,5 @@
 import { PostPayload } from 'types'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { getHeadline, sanitize } from 'utils'
 import { useAppStore } from 'state'
 import { useMediaQuery } from 'utils/responsivity'
@@ -43,8 +43,6 @@ export default function HeadlineCard(props: HeadlineCardProps) {
   const openPost = () => {
     setPostId(post.id)
   }
-
-  useEffect(() => console.log('post #', idx, { title: post.title }))
 
   return (
     <div className={`flex my-3 bg-white ${itemGridClassnames[idx % 6]}`}>
